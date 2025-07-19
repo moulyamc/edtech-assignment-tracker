@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>View Submissions</title></head>
+<body>
+  <h2>View Submissions</h2>
+  <form id="viewForm">
+    Assignment ID: <input type="number" id="aid"><br>
+    Token: <input type="text" id="token"><br>
+    <button type="submit">View</button>
+  </form>
+  <div id="output"></div>
+  <script>
+    document.getElementById("viewForm").onsubmit = async function(e) {
+      e.preventDefault();
+      const aid = document.getElementById("aid").value;
+      const token = document.getElementById("token").value;
+      const res = await fetch(`/assignments/${aid}/submissions?token=${token}`);
+      const data = await res.json();
+      document.getElementById("output").innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>

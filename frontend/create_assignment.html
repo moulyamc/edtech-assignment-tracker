@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title>Create Assignment</title></head>
+<body>
+  <h2>Create Assignment</h2>
+  <form id="createForm">
+    Title: <input type="text" id="title"><br>
+    Description: <input type="text" id="description"><br>
+    Deadline: <input type="datetime-local" id="deadline"><br>
+    Token: <input type="text" id="token"><br>
+    <button type="submit">Create</button>
+  </form>
+  <script>
+    document.getElementById("createForm").onsubmit = async function(e) {
+      e.preventDefault();
+      const res = await fetch("/assignments?token=" + document.getElementById("token").value, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: document.getElementById("title").value,
+          description: document.getElementById("description").value,
+          deadline: document.getElementById("deadline").value
+        })
+      });
+      alert(await res.text());
+    }
+  </script>
+</body>
+</html>

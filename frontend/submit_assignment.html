@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>Submit Assignment</title></head>
+<body>
+  <h2>Submit Assignment</h2>
+  <form id="submitForm">
+    Assignment ID: <input type="number" id="aid"><br>
+    Content: <input type="text" id="content"><br>
+    Token: <input type="text" id="token"><br>
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    document.getElementById("submitForm").onsubmit = async function(e) {
+      e.preventDefault();
+      const aid = document.getElementById("aid").value;
+      const token = document.getElementById("token").value;
+      const content = document.getElementById("content").value;
+      const res = await fetch(`/assignments/${aid}/submit?token=${token}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: content })
+      });
+      alert(await res.text());
+    }
+  </script>
+</body>
+</html>
