@@ -94,9 +94,3 @@ Just open the HTML files in `frontend/` folder:
   - Persistent PostgreSQL DB
   - OAuth/SSO authentication
 
----
-
-## 📍 On-site Role Note
-
-This project was built as part of the Fullstack Intern assignment for **Pannini Education Ventures**, intended for on-site roles in Bangalore.
-
